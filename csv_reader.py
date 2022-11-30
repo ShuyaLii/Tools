@@ -14,8 +14,6 @@ def read_csv(file, tg_file):
     w.close()
     r.close()
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     train_data_path = 'train_data.csv'
     test_data_path = 'test_data.csv'
@@ -24,5 +22,3 @@ if __name__ == '__main__':
 
     #read_csv(train_data_path, train_epoch_path)
     read_csv(test_data_path, test_epoch_path)
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
