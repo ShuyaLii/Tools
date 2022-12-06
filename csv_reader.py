@@ -75,7 +75,7 @@ def draw_chart(fold):
 
                 r.close()
 
-def draw_chart_multi(fold):
+def draw_chart_multi(fold, tg_fold):
     dic = {'reward': 3,
            'att': 4,
            'throughput': 5,
@@ -88,9 +88,9 @@ def draw_chart_multi(fold):
             if file.find('epoch') > -1 and file.find('csv') > -1:
                 file_path = os.path.join(path, file)
 
-                tg_fold_path = os.path.join(path, 'epoch_figure')
-                if not os.path.exists(tg_fold_path):
-                   os.mkdir(tg_fold_path)
+                #tg_fold = os.path.join(path, 'epoch_figure')
+                #if not os.path.exists(tg_fold):
+                #   os.mkdir(tg_fold)
 
                 r = open(file_path, 'rt')
                 reader = csv.reader(r)
@@ -116,11 +116,11 @@ def draw_chart_multi(fold):
 
                     count = (count + 1) % 9
                     if count == 0:
-                        str_start = path.find('data') + 4 + 1
+                        str_start = path.find('data') + (len(fold) - 2) + 1
                         str_end = path.find('1h') + 2
                         tg_title = path[str_start : str_end]
                         tg_file = tg_title + '.png'
-                        tg_file_path = os.path.join(tg_fold_path, tg_file)
+                        tg_file_path = os.path.join(tg_fold, tg_file)
 
                         plt.suptitle(tg_title)
                         plt.savefig(tg_file_path)
@@ -133,8 +133,9 @@ def draw_chart_multi(fold):
 
 if __name__ == '__main__':
 
-   fold_path = './data'
+   fold_path = './data_1x1_14'
+   tg_fold_path = './data_1x1_14/figures'
 
    #read_csv(fold_path)
    #draw_chart(fold_path)
-   draw_chart_multi(fold_path)
+   draw_chart_multi(fold_path, tg_fold_path)
